@@ -1,0 +1,7 @@
+﻿@{
+  //Web endpoint that returns guest information
+  Layout = null;
+  var db = Database.Open("WeddingSite");
+  var data = db.Query("SELECT * FROM RSVP");
+  Response.Write(Json.Encode(data));
+}

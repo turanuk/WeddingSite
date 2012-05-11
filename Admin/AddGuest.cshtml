@@ -1,0 +1,80 @@
+﻿@*
+  This page will generate an invitation ID to be associated with the guest and printed
+  on his or her invitation. Extension method for this will be located in App_Code and will be
+  generated based off of the guest's last name and current time-stamp.
+
+  Three possible states for a guest:
+  1. Invited - active and on the list
+  2. Moved off the active list but the invitation ID can be recovered
+  3. Deleted - in this case, you need to re-add the guest and the invitation ID will need to be re-generated.
+*@
+@section Scripts {
+  <script src="~/Scripts/jquery.validate.min.js"></script>
+  <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+@using MyExtensions;
+@{
+  var firstName = "";
+  var lastName = "";
+  var numOfGuests = 0;
+
+  Validation.RequireField("firstName", "You must specify a first name.");
+  Validation.RequireField("lastName", "You must specify a last name.");
+  Validation.RequireField("numOfGuests", "You must specify a number of guests.");
+
+  if (IsPost) {
+    if (Validation.IsValid()) {
+      firstName = Request["firstName"];
+      lastName = Request["lastName"];
+      numOfGuests = Request["numOfGuests"].AsInt();
+
+      var db = Database.Open("WeddingSite");
+      var personRecord = db.QuerySingle("SELECT * FROM RSVP WHERE (FirstName = @0) AND (LastName = @1)", firstName, lastName);
+      if (personRecord == null) {
+        db.Execute("INSERT INTO RSVP (FirstName, LastName, InvitationId, NumberInParty) VALUES (@0, @1, @2, @3)", firstName, lastName, lastName.InvitationCode(), numOfGuests);
+        Response.Redirect("~/Admin/ManageGuests");
+      } else {
+        ModelState.AddFormError("You already have an entry for this guest!");
+      }
+    }
+  }
+}
+
+<div class="post">
+  <h2 class="title">Add Guest</h2>
+  <p>Here you can add parties of guests to your wedding.</p>
+  <fieldset>
+    <legend>Add Guest</legend>
+    <form action="" method="post">
+      @Html.ValidationSummary("There was a problem with your guest. Please correct the errors and try again.", excludeFieldErrors: true, htmlAttributes:null)
+      <ol>
+        <li>
+          <label for="firstName" @if(!ModelState.IsValidField("firstName")) {<text>class="error-label"</text>}>First Name</label>
+          <input id="firstName" type="text" value="@firstName" name="firstName" @Validation.For("firstName") />
+          @Html.ValidationMessage("firstName")
+        </li>
+        <li>
+          <label for="lastName" @if(!ModelState.IsValidField("lastName")) {<text>class="error-label"</text>}>Last Name</label>
+          <input id="lastName" type="text" value="@lastName" name="lastName" @Validation.For("lastName") />
+          @Html.ValidationMessage("lastName")
+        </li>
+        <li>
+          <label for="numOfGuests">Total Number in Party</label>
+          <select name="numOfGuests">
+            <option value="1">1&nbsp;</option>
+            <option value="2" selected>2&nbsp;</option>
+            <option value="3">3&nbsp;</option>
+            <option value="4">4&nbsp;</option>
+            <option value="5">5&nbsp;</option>
+            <option value="6">6&nbsp;</option>
+            <option value="7">7&nbsp;</option>
+            <option value="8">8&nbsp;</option>
+          </select>
+        </li>
+        <li class="formactions">
+          <input type="submit" value="Add"/>
+        </li>
+      </ol>
+    </form>
+  </fieldset>
+</div>

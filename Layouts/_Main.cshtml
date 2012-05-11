@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>@Page.Title</title>
+    <link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+    <link href="~/Styles/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="~/scripts/jquery-1.7.2.min.js"></script>
+</head>
+<body id="@Page.PageId">
+  <div id="wrapper">
+    <div id="page">
+      <div id="page-bgtop">
+        <div id="page-bgbtm">
+          <div id="page-content">
+            <div id="header-wrapper">
+              <div id="header">
+                <div id="logo">
+                  <h1><a href="#">WeddingSite</a></h1>
+                  <p>Foo and Bar</p>
+                </div>
+              </div>
+            </div>
+            @RenderPage("~/Layouts/_Menu.cshtml")
+            <div id="header"></div>
+            <div id="content">
+              @RenderBody()
+              <div style="clear: both;">&nbsp;</div>
+            </div>
+            @RenderPage("~/Layouts/_SideBar.cshtml")
+          </div>
+          <div style="clear: both;">&nbsp;</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <p>Copyright @DateTime.Now.Year WeddingSite. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">CSS Templates</a>.</p>
+  </div>
+  @RenderSection("Scripts", required: false)
+</body>
+</html>

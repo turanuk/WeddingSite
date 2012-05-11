@@ -1,0 +1,17 @@
+﻿@{
+  Page.Title = "RSVP";
+  Page.PageId = "RSVP";
+  var data = "";
+  if (IsPost) {
+    data = Request["data"];
+  }
+}
+<div class="post">
+  <h2 class="title">RSVP</h2>
+  @data
+  <p>Please use the form below to RSVP and tell us how many guests will be in your party!</p>
+  <form action="~/RSVP" method="post">
+    <input type="text" name="data"/>
+    <input type="submit"/>
+  </form>
+</div>

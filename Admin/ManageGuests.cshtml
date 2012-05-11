@@ -1,0 +1,38 @@
+﻿@{
+}
+@section Scripts {
+  <script src="~/Scripts/knockout-2.1.0.js"></script>
+  <script src="~/Scripts/SimpleGrid.js"></script>
+  <script src="~/Knockout/ManageGuestsViewModel.js"></script>
+}
+<div class="post">
+  <h2 class="title">Manage Guests</h2>
+  <p>Here you can view guests that are coming to your wedding</p>
+
+  <table class="ko-grid">
+    <thead>
+        <tr>
+          <th>Last Name</th>
+          <th>First Name</th>
+          <th>Number of Guests</th>
+          <th>Responded</th>
+          <th>Invitation Id</th>
+          <th>Delete?</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: guests">
+        <tr>
+            <td data-bind="text: LastName"></td>
+            <td data-bind="text: FirstName"></td>
+            <td>
+              <a href="#">-</a>
+              <span data-bind="text: NumberInParty"></span>
+              <a href="#">+</a>
+            </td>
+            <td><a data-bind="text: Responded ? 'Yes' : 'No'" href="#"></a></td>
+            <td data-bind="text: InvitationId"></td>
+            <td><button data-bind="click: $root.deleteGuest">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+</div>
