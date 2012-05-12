@@ -10,7 +10,7 @@
   <p class="meta">Posted by @postedBy on March 19, 2012</p>
   <div class="entry">
     <p>
-      <img src="@Server.MapPath(imgUrl)" width="620" height="250" alt="@title" class="border" />
+      <img src="@VirtualPathUtility.ToAbsolute(imgUrl)" width="620" height="250" alt="@title" class="border" />
       @Html.Raw(content)
     </p>
   </div>
