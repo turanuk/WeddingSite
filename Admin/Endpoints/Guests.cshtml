@@ -3,5 +3,6 @@
   Layout = null;
   var db = Database.Open("WeddingSite");
   var data = db.Query("SELECT * FROM RSVP");
+  Response.AddHeader("Cache-Control", "no-cache");
   Response.Write(Json.Encode(data));
 }

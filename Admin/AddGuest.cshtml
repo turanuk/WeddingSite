@@ -31,7 +31,7 @@
       var db = Database.Open("WeddingSite");
       var personRecord = db.QuerySingle("SELECT * FROM RSVP WHERE (FirstName = @0) AND (LastName = @1)", firstName, lastName);
       if (personRecord == null) {
-        db.Execute("INSERT INTO RSVP (FirstName, LastName, InvitationId, NumberInParty) VALUES (@0, @1, @2, @3)", firstName, lastName, lastName.InvitationCode(), numOfGuests);
+        db.Execute("INSERT INTO RSVP (FirstName, LastName, InvitationId, NumberInParty, Responded) VALUES (@0, @1, @2, @3, @4)", firstName, lastName, lastName.InvitationCode(), numOfGuests, false);
         Response.Redirect("~/Admin/ManageGuests");
       } else {
         ModelState.AddFormError("You already have an entry for this guest!");
