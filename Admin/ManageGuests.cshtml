@@ -5,7 +5,7 @@
 }
 <div class="post">
   <h2 class="title">Manage Guests</h2>
-  <p>Here you can view guests that are coming to your wedding</p>
+  <p>Here you can view guests that are coming to your wedding.</p>
 
   <table class="ko-grid">
     <thead>
@@ -35,5 +35,14 @@
             <td><button data-bind="click: $root.deleteGuest">Delete</button></td>
         </tr>
     </tbody>
-</table>
+  </table>
+  <div class="totalGuests">
+    <span class="totalGuestsLabel">Total Guests: </span><span data-bind="text: totalGuests"></span>
+  </div>
+  <div class="totalRSVPs">
+    <span class="totalRSVPLabel">Total RSVPed: </span><span data-bind="text: totalRSVPs"></span>
+  </div>
+  <div class="RSVPRate">
+    <span class="RSVPRateLabel">RSVP Rate: </span><span data-bind="text: RSVPRate"></span>%
+  </div>
 </div>

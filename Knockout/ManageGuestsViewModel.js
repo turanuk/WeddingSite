@@ -10,6 +10,30 @@ var ManageGuestsViewModel = function (guestInput) {
     });
   }
 
+  self.totalGuests = ko.computed(function() {
+    var total = 0;
+    $.each(self.guests(), function () { total += this.NumberInParty });
+    return total;
+  });
+
+  self.totalRSVPs = ko.computed(function () {
+    var total = 0;
+    $.each(self.guests(), function () { if (this.Responded) { total += 1 } });
+    return total;
+  });
+
+  self.RSVPRate = ko.computed(function () {
+    var totalYes = 0;
+    var total = 0;
+    $.each(self.guests(), function () {
+      total += 1;
+      if (this.Responded) {
+        totalYes += 1
+      }
+    });
+    return totalYes/total*100;
+  });
+
   self.refresh = function () {
     $.getJSON('/admin/endpoints/guests', function (data) {
       self.guests(data);

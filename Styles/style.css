@@ -541,3 +541,27 @@ table {
   table tr td:first-child {
     font-weight: bold;
   }
+
+.totalGuests {
+  margin-top: 15px;
+}
+
+.totalGuestsLabel {
+  font-weight: bold;
+}
+
+.totalRSVPs {
+  margin-top: 3px;
+}
+
+.totalRSVPLabel {
+  font-weight: bold;
+}
+
+.RSVPRate {
+  margin-top: 4px;
+}
+
+.RSVPRateLabel {
+  font-weight: bold;
+}
