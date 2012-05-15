@@ -23,11 +23,14 @@
             <td data-bind="text: LastName"></td>
             <td data-bind="text: FirstName"></td>
             <td>
-              <a href="#">-</a>
+              <a href="#" data-bind="click: $root.subtractFromParty">-</a>
               <span data-bind="text: NumberInParty"></span>
               <a href="#" data-bind="click: $root.addToParty">+</a>
             </td>
-            <td><a data-bind="text: Responded ? 'Yes' : 'No'" href="#"></a></td>
+            <td>
+                <a data-bind="visible: Responded, click: $root.markNotResponded" href="#">Yes</a>
+                <a data-bind="visible: !Responded, click: $root.markResponded" href="#">No</a>
+            </td>
             <td data-bind="text: InvitationId"></td>
             <td><button data-bind="click: $root.deleteGuest">Delete</button></td>
         </tr>

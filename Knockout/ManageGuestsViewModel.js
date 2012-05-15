@@ -10,6 +10,12 @@ var ManageGuestsViewModel = function (guestInput) {
     });
   }
 
+  self.refresh = function () {
+    $.getJSON('/admin/endpoints/guests', function (data) {
+      self.guests(data);
+    });
+  }
+
   self.deleteGuest = function (guest) {
     $.post('/admin/endpoints/delete', { InvitationId: guest.InvitationId }, function (data) {
       self.guests.remove(function (item) { return item.InvitationId == guest.InvitationId });
@@ -18,7 +24,25 @@ var ManageGuestsViewModel = function (guestInput) {
 
   self.addToParty = function (guest) {
     $.post('/admin/endpoints/addtoparty', { InvitationId: guest.InvitationId }, function (data) {
-      //alert('hi');
+      self.refresh();
+    });
+  }
+
+  self.subtractFromParty = function (guest) {
+    $.post('/admin/endpoints/subtractfromparty', { InvitationId: guest.InvitationId }, function (data) {
+      self.refresh();
+    });
+  }
+
+  self.markNotResponded = function (guest) {
+    $.post('/admin/endpoints/marknotresponded', { InvitationId: guest.InvitationId }, function (data) {
+      self.refresh();
+    });
+  }
+
+  self.markResponded = function (guest) {
+    $.post('/admin/endpoints/markresponded', { InvitationId: guest.InvitationId }, function (data) {
+      self.refresh();
     });
   }
 }

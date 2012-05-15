@@ -8,7 +8,11 @@
     Try
       Dim guest = db.QuerySingle("SELECT * FROM RSVP WHERE InvitationId = @0", invitationCode)
       Dim count = guest.NumberInParty
-      count = count - 1
+      If count <= 1 Then
+        count = 1
+      Else
+        count = count - 1
+      End If
       db.Execute("UPDATE RSVP SET NumberInParty = @0 WHERE InvitationId = @1", count, invitationCode)
     Catch ex As Exception
       Response.SetStatus(500)
