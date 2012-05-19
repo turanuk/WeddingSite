@@ -1,17 +1,66 @@
 ﻿@{
   Page.Title = "RSVP";
   Page.PageId = "RSVP";
-  var data = "";
+  var invitationID = "";
   if (IsPost) {
-    data = Request["data"];
   }
 }
+<script>
+    $("#lookup").
+</script>
 <div class="post">
   <h2 class="title">RSVP</h2>
-  @data
-  <p>Please use the form below to RSVP and tell us how many guests will be in your party!</p>
-  <form action="~/RSVP" method="post">
-    <input type="text" name="data"/>
-    <input type="submit"/>
-  </form>
+  <p>Note: Your invitation id is printed on your invitation.</p>
+  <fieldset>
+    <legend>InvitationID</legend>
+    <ol>
+        <li>
+            <label for="invitationID" @if(!ModelState.IsValidField("invitationID")) {<text>class="error-label"</text>}>Invitation ID</label>
+            <input id="invitationID" type="text" value="@invitationID" name="invitationID" @Validation.For("firstName") />
+            @Html.ValidationMessage("invitationID")
+            <input type="button" id="lookup" class="ajaxButton" value="Look Up" />
+        </li>
+    </ol>
+  </fieldset>
+  <fieldset>
+    <legend>RSVP</legend>
+    <form method="post">
+      @Html.ValidationSummary("There was a problem with your guest. Please correct the errors and try again.", excludeFieldErrors: true, htmlAttributes:null)
+      <ol>
+        
+        <div id="invitationInfo">
+            <li>
+                <label for="invitationID" @if(!ModelState.IsValidField("invitationID")) {<text>class="error-label"</text>}>Invitation ID</label>
+                <input id="invitationID" type="text" value="@invitationID" name="invitationID" @Validation.For("firstName") />
+                @Html.ValidationMessage("invitationID")
+                <input type="button" id="lookup" class="ajaxButton" value="Look Up" />
+            </li>
+            <li>
+              <label for="firstName">First Name</label>
+              <input id="firstName" type="text" value="Enter Invitation ID"  disabled />
+            </li>
+            <li>
+              <label for="lastName">Last Name</label>
+              <input id="lastName" type="text" value="Enter Invitation ID" disabled />
+            </li>
+            <li>
+              <label for="numOfGuests">Total Number in Party</label>
+              <select name="numOfGuests">
+                <option value="1">1&nbsp;</option>
+                <option value="2" selected>2&nbsp;</option>
+                <option value="3">3&nbsp;</option>
+                <option value="4">4&nbsp;</option>
+                <option value="5">5&nbsp;</option>
+                <option value="6">6&nbsp;</option>
+                <option value="7">7&nbsp;</option>
+                <option value="8">8&nbsp;</option>
+              </select>
+            </li>
+            <li class="formactions">
+              <input type="submit" value="Add"/>
+            </li>
+        </div>
+      </ol>
+    </form>
+  </fieldset>
 </div>

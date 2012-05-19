@@ -474,14 +474,19 @@ fieldset {
   margin-top: 15px;
 }
 
-fieldset input[type="submit"] {
+fieldset input[type="submit"], .ajaxButton {
   font-family: Segoe UI;
   text-transform: uppercase;
   border: 1px solid #ccc;
-  padding: 5px;
+  padding: 3px;
   font-size: 1.2em;
   color: #444;
   width: 100px;
+}
+
+.ajaxButton {
+  margin-left: 7px;
+  font-size: 1.1em;
 }
 
 .validation-summary-errors {
@@ -564,4 +569,8 @@ table {
 
 .RSVPRateLabel {
   font-weight: bold;
+}
+
+#invitationInfo {
+  display: none;
 }
