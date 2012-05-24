@@ -1,0 +1,8 @@
+﻿@{
+  //Web endpoint that returns guest information
+  Layout = null;
+  var db = Database.Open("WeddingSite");
+  var data = db.QuerySingle("SELECT * FROM RSVP WHERE InvitationID = @0", UrlData[0].AsInt());
+  Response.AddHeader("Cache-Control", "no-cache");
+  Response.Write(Json.Encode(data));
+}

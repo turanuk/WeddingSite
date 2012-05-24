@@ -1,0 +1,12 @@
+﻿@{
+  Page.Title = "Thank you!";
+  Page.PageId = "Thank You!";
+  var invitationID = UrlData[0].AsInt();
+  var db = Database.Open("WeddingSite");
+  var guest = db.QuerySingle("SELECT * FROM RSVP WHERE InvitationID = @0", invitationID);
+}
+<div class="post">
+  <h2 class="title">Thanks for your RVSP!</h2>
+  <img src="~/Images/img09.jpg" width="620" height="250" alt="" class="border" />
+  <p>Thanks @guest.FirstName - we have you down for @guest.NumberInParty guests and we look forward to seeing you on @DateTime.Now.ToShortDateString()!</p>
+</div>

@@ -574,3 +574,9 @@ table {
 #invitationInfo {
   display: none;
 }
+
+#errorMessage {
+  display: none;
+  color: #E91370;
+  font-weight: bold;
+}
