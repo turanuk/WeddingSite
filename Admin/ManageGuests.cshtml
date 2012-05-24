@@ -4,9 +4,23 @@
 }
 <div class="post">
   <h2 class="title">Manage Guests</h2>
-  <p>Here you can view guests that are coming to your wedding.</p>
-
-  <table class="ko-grid">
+  <p>Here you can view guests that are coming to your wedding (limit of 8 per party)</p>
+  <div class="totalGuests">
+    <span class="totalGuestsLabel">Total Guests: </span><span data-bind="text: totalGuests"></span>
+  </div>
+  <div class="totalRSVPs">
+    <span class="totalRSVPLabel">Total RSVPed: </span><span data-bind="text: totalRSVPs"></span>
+  </div>
+  <div class="RSVPRate">
+    <span class="RSVPRateLabel">RSVP Rate: </span><span data-bind="text: RSVPRate"></span>%
+  </div>
+  <fieldset>
+    <legend>Filter</legend>
+      <label for="lastName">Filter by last name:</label>
+      <input id="lastName" data-bind="value: filter, valueUpdate: 'keyup'" type="text"/>
+      <input type="button" id="clear" class="ajaxButton" value="Clear" data-bind="click: clearFilter" />
+  </fieldset>
+  <table class="ko-grid" data-bind="visible: filteredGuests().length > 0">
     <thead>
         <tr>
           <th>Last Name</th>
@@ -17,7 +31,7 @@
           <th>Delete?</th>
         </tr>
     </thead>
-    <tbody data-bind="foreach: guests">
+    <tbody data-bind="foreach: filteredGuests">
         <tr>
             <td data-bind="text: LastName"></td>
             <td data-bind="text: FirstName"></td>
@@ -35,13 +49,5 @@
         </tr>
     </tbody>
   </table>
-  <div class="totalGuests">
-    <span class="totalGuestsLabel">Total Guests: </span><span data-bind="text: totalGuests"></span>
-  </div>
-  <div class="totalRSVPs">
-    <span class="totalRSVPLabel">Total RSVPed: </span><span data-bind="text: totalRSVPs"></span>
-  </div>
-  <div class="RSVPRate">
-    <span class="RSVPRateLabel">RSVP Rate: </span><span data-bind="text: RSVPRate"></span>%
-  </div>
+  
 </div>

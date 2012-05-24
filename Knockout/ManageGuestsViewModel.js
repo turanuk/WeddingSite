@@ -3,6 +3,19 @@
 var ManageGuestsViewModel = function (guestInput) {
   var self = this;
   self.guests = ko.observableArray(guestInput);
+  self.filter = ko.observable('');
+  self.filteredGuests = ko.dependentObservable(function() {
+    var localFilter = self.filter().toLowerCase();
+    if (!localFilter) {
+      return self.guests;
+    } else {
+      return ko.utils.arrayFilter(self.guests(), function (item) {
+        if (item.LastName.toLowerCase().search(localFilter) != -1) {
+          return true;
+        }
+      });
+    }
+  });
   self.columns = [];
   self.sortByLastName = function () {
     this.guests.sort(function (a, b) {
@@ -31,7 +44,7 @@ var ManageGuestsViewModel = function (guestInput) {
         totalYes += 1
       }
     });
-    return totalYes/total*100;
+    return (totalYes/total*100).toFixed(1);
   });
 
   self.refresh = function () {
@@ -68,6 +81,10 @@ var ManageGuestsViewModel = function (guestInput) {
     $.post('/admin/endpoints/markresponded', { InvitationId: guest.InvitationId }, function (data) {
       self.refresh();
     });
+  }
+
+  self.clearFilter = function () {
+    self.filter('');
   }
 }
 

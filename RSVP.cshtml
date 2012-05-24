@@ -11,6 +11,12 @@
 }
 <script>
   $(function() {
+    $('#invitationID').keydown(function (event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        $('#lookup').click();
+      }
+    });
     $('#lookup').click(function() {
       $('#errorMessage').hide();
       var invitationId = $('#invitationID').val();
@@ -20,8 +26,8 @@
             $('#actionType').html('Update your RSVP');
             $('#actionDescription').html('Thanks for responding ' + data.FirstName + '. Let us know what\'s changed!');
           } else {
-            $('#actionType').html('How Many?');
-            $('#actionDescription').html('Hi ' + data.FirstName + '! Please use the form below to let us know how many will be in your party.');
+            $('#actionType').html('Hi ' + data.FirstName + '!');
+            $('#actionDescription').html('Please use the form below to let us know how many will be in your party.');
           }
           $('select option:nth-child(' + data.NumberInParty + ')').attr('selected', 'selected')
           $('#invitationInfo').show();
