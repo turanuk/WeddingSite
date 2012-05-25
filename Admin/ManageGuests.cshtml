@@ -1,6 +1,8 @@
 ﻿@section Scripts {
   <script src="~/Scripts/knockout-2.1.0.js"></script>
   <script src="~/Knockout/ManageGuestsViewModel.js"></script>
+<script src="~/Knockout/CustomBindings.js"></script>
+  <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
 }
 <div class="post">
   <h2 class="title">Manage Guests</h2>
@@ -20,7 +22,10 @@
       <input id="lastName" data-bind="value: filter, valueUpdate: 'keyup'" type="text"/>
       <input type="button" id="clear" class="ajaxButton" value="Clear" data-bind="click: clearFilter" />
   </fieldset>
-  <table class="ko-grid" data-bind="visible: filteredGuests().length > 0">
+  <div class="notFound" data-bind="css: { visible: filteredGuests().length == 0 }" >
+    No guests found! Try another search.
+  </div>
+  <table class="ko-grid" data-bind="css: { visible: filteredGuests().length > 0 }">
     <thead>
         <tr>
           <th>Last Name</th>
@@ -45,9 +50,11 @@
                 <a data-bind="visible: !Responded, click: $root.markResponded" href="#">No</a>
             </td>
             <td data-bind="text: InvitationId"></td>
-            <td><button data-bind="click: $root.deleteGuest">Delete</button></td>
+            <td><button data-bind="deletePrompt: $root">Delete</button></td>
         </tr>
     </tbody>
   </table>
-  
+  <div class="dialog-delete-element" style="display: none" title="Delete">
+    <p>Are you sure?</p>
+  </div>
 </div>

@@ -7,7 +7,7 @@ var ManageGuestsViewModel = function (guestInput) {
   self.filteredGuests = ko.dependentObservable(function() {
     var localFilter = self.filter().toLowerCase();
     if (!localFilter) {
-      return self.guests;
+      return self.guests();
     } else {
       return ko.utils.arrayFilter(self.guests(), function (item) {
         if (item.LastName.toLowerCase().search(localFilter) != -1) {

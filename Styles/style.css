@@ -581,3 +581,14 @@ table {
   color: #E91370;
   font-weight: bold;
 }
+
+.notFound {
+  color: #E91370;
+  font-weight: bold;
+  margin-top: 3px;
+  display: none;
+}
+
+.visible {
+  display: block;
+}
