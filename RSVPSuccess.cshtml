@@ -7,6 +7,10 @@
 }
 <div class="post">
   <h2 class="title">Thanks for your RVSP!</h2>
-  <img src="~/Images/img09.jpg" width="620" height="250" alt="" class="border" />
-  <p>Thanks @guest.FirstName - we have you down for @guest.NumberInParty guests and we look forward to seeing you on @DateTime.Now.ToShortDateString()!</p>
+  <img src="~/Images/img09.jpg" width="620" height="250" alt="thankspic" class="border" />
+  @if (guest.NumberInParty > 0) {
+    <p>Thanks @guest.FirstName - we have you down for @guest.NumberInParty guests and we look forward to seeing you on @DateTime.Now.ToShortDateString()!</p>
+  } else {
+    <p>We're sorry you can't make it @guest.FirstName :(. Please RSVP again if your situation changes!</p>
+  }
 </div>

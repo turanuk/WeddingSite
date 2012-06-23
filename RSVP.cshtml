@@ -27,7 +27,7 @@
             $('#actionDescription').html('Thanks for responding ' + data.FirstName + '. Let us know what\'s changed!');
           } else {
             $('#actionType').html('Hi ' + data.FirstName + '!');
-            $('#actionDescription').html('Please use the form below to let us know how many will be in your party.');
+            $('#actionDescription').html('Please use the form below to let us know how many will be in your party. If you can\'t make it, please select 0.');
           }
           $('select option:nth-child(' + data.NumberInParty + ')').attr('selected', 'selected')
           $('#invitationInfo').show();
@@ -77,14 +77,13 @@
             <li>
               <label for="numOfGuests">Total Number in Party</label>
               <select name="numOfGuests">
+                <option value="0">0 (sorry you can't make it)</option>
                 <option value="1">1&nbsp;</option>
                 <option value="2">2&nbsp;</option>
                 <option value="3">3&nbsp;</option>
                 <option value="4">4&nbsp;</option>
                 <option value="5">5&nbsp;</option>
                 <option value="6">6&nbsp;</option>
-                <option value="7">7&nbsp;</option>
-                <option value="8">8&nbsp;</option>
               </select>
             </li>
             <li class="formactions">
@@ -95,4 +94,5 @@
       </form>
       </fieldset>
   </div>
+
 </div>
