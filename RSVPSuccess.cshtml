@@ -6,11 +6,13 @@
   var guest = db.QuerySingle("SELECT * FROM RSVP WHERE InvitationID = @0", invitationID);
 }
 <div class="post">
-  <h2 class="title">Thanks for your RVSP!</h2>
-  <img src="~/Images/img09.jpg" width="620" height="250" alt="thankspic" class="border" />
   @if (guest.NumberInParty > 0) {
-    <p>Thanks @guest.FirstName - we have you down for @guest.NumberInParty guests and we look forward to seeing you on @DateTime.Now.ToShortDateString()!</p>
+    <h2 class="title">Thanks for your RVSP!</h2>
+    <img src="~/Images/birds_red.png" alt="thankspic" style="margin-bottom: 25px;" />
+    <h2>See you on the 29th!</h2>
+    <p>Thanks @guest.FirstName - we have you down for @guest.NumberInParty guests, please let us know if anything changes.</p>
   } else {
-    <p>We're sorry you can't make it @guest.FirstName :(. Please RSVP again if your situation changes!</p>
+    <h2>Sorry :(</h2>
+    <p>We're sorry you can't make it @guest.FirstName. Please RSVP again if your situation changes!</p>
   }
 </div>

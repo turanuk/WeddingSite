@@ -42,18 +42,20 @@
     })
   });
 </script>
-<div class="post">
+<div class="rsvpContent">
   <h2 class="title">RSVP</h2>
   <p>Please enter your invitation ID, which is printed on your invitation.</p>
   <fieldset>
     <legend>InvitationID</legend>
     <ol>
-        <li>
-            <label for="invitationID">Invitation ID</label>
-            <input id="invitationID" type="text"/>
-            @Html.ValidationMessage("invitationID")
-            <input type="button" id="lookup" class="ajaxButton" value="Look Up" />
-        </li>
+      <li>
+        <label for="invitationID">Invitation ID</label>
+        <input id="invitationID" type="text"/>
+        @Html.ValidationMessage("invitationID")
+      </li>
+      <li>
+        <input type="button" id="lookup" class="ajaxButton" value="Look Up" />
+      </li>
     </ol>
   </fieldset>
   <div id="errorMessage">
@@ -66,14 +68,6 @@
       <form method="post">
         @Html.ValidationSummary("There was a problem with your guest. Please correct the errors and try again.", excludeFieldErrors: true, htmlAttributes:null)
         <ol>
-            <li>
-              <label for="firstName">First Name</label>
-              <input id="firstName" type="text" value=""  disabled />
-            </li>
-            <li>
-              <label for="lastName">Last Name</label>
-              <input id="lastName" type="text" value="" disabled />
-            </li>
             <li>
               <label for="numOfGuests">Total Number in Party</label>
               <select name="numOfGuests">
@@ -94,5 +88,4 @@
       </form>
       </fieldset>
   </div>
-
 </div>

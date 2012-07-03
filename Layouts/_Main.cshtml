@@ -7,39 +7,34 @@
     <title>@Page.Title</title>
     <link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
-    <link href="~/Styles/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href='http://fonts.googleapis.com/css?family=Gentium+Basic' rel='stylesheet' type='text/css'>
+    <link href="~/Styles/layout.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="~/Styles/home.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="~/Styles/photos.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="~/Styles/story.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="~/Styles/rsvp.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="~/Styles/registry.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="~/Styles/admin.css" rel="stylesheet" type="text/css" media="screen" />
+    @RenderSection("Styles", required: false)
     <link href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.20/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="~/scripts/jquery-1.7.2.min.js"></script>
 </head>
 <body id="@Page.PageId">
-  <div id="wrapper">
     <div id="page">
-      <div id="page-bgtop">
-        <div id="page-bgbtm">
-          <div id="page-content">
-            <div id="header-wrapper">
-              <div id="header">
-                <div id="logo">
-                  <h1><a href="#">WeddingSite</a></h1>
-                  <p>Foo and Bar</p>
-                </div>
-              </div>
+      <div id="page-content">
+        <div id="header-wrapper">
+          <div id="header">
+            <div id="logo">
+              <img src="~/Images/logo.png" alt="logo"/>
             </div>
-            @RenderPage("~/Layouts/_Menu.cshtml")
-            <div id="content">
-              @RenderBody()
-              <div style="clear: both;">&nbsp;</div>
-            </div>
-            @RenderPage("~/Layouts/_SideBar.cshtml")
           </div>
-          <div style="clear: both;">&nbsp;</div>
+        </div>
+        @RenderPage("~/Layouts/_Menu.cshtml")
+        <div class="content">
+          @RenderBody()
         </div>
       </div>
     </div>
-  </div>
-  <div id="footer">
-    <p>Copyright @DateTime.Now.Year WeddingSite. All rights reserved. Design by <a href="http://www.freecsstemplates.org/">CSS Templates</a>.</p>
-  </div>
   @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -1,0 +1,9 @@
+.registryContent {
+  text-align: center;
+}
+
+#Registry > #page {
+  background-image: url("../Images/birds_yellow.png");
+  background-repeat: no-repeat;
+  background-position: -150px 830px;
+}

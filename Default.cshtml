@@ -2,4 +2,33 @@
   Page.Title = "Welcome";
   Page.PageId = "Home";
 }
-@RenderPage("~/Layouts/_Post.cshtml", "Welcome", "Jim", "05/09/2012", "~/Images/img10.jpg", "Welcome to our WeddingSite template. Please customize it as you see fit!")
+<style>
+  #menu-wrapper {
+    display: none;
+  }
+</style>
+<script>
+  $(function () {
+    //Implement cache with local storage. 
+    //If it's been more than 10 minutes since you've hit this page, render fade
+    var currentMilliseconds = Date.parse(new Date());
+    if (!localStorage.firstTime || currentMilliseconds - localStorage.firstTime > 600000) {
+      var def = $.Deferred();
+      $('#menu-wrapper').fadeIn(2000, function () {
+        def.resolve();
+      });
+      def.done(function () {
+        $('.homeContent').fadeIn(500);
+      })
+    } else {
+      $('#menu-wrapper').show();
+      $('.homeContent').show();
+    }
+    //Rolling reset
+    localStorage.firstTime = Date.parse(new Date());
+  })
+</script>
+<div class="homeContent">
+  <h2>Welcome</h2>
+  <p>Hello world, here is where content goes!</p>
+</div>

@@ -1,0 +1,175 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Gentium Basic", sans-serif;
+  font-size: 1.1em;
+  background-color: rgba(0,0,0,0.13);
+  height: 100%;
+  min-height: 1000px;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  font-weight: normal;
+  color: #DC1E31;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 2.4em;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 1.6em;
+}
+
+p, ul, ol {
+  margin-top: 0;
+  line-height: 180%;
+}
+
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #DC1E31;
+}
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+img.border {
+  margin-bottom: 7px;
+  border: 6px solid #EEE7DF;
+}
+
+img.alignleft {
+  float: left;
+  margin-right: 25px;
+}
+
+img.alignright {
+  float: right;
+}
+
+img.aligncenter {
+  margin: 0px auto;
+}
+
+/* Header */
+
+#header-wrapper {
+  height: 250px;
+}
+
+#header {
+  width: 900px;
+  height: 25px;
+  margin: 0 auto;
+}
+
+/* Logo */
+
+#logo {
+  text-align: center;
+  margin: 0px auto;
+}
+
+  #logo h1, #logo p {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+
+/* Menu */
+
+#menu-wrapper {
+  height: 58px;
+}
+
+nav {
+  height: 58px;
+  margin: 0px auto;
+  padding: 0px 20px 0px 20px;
+}
+
+  nav ul {
+    margin: 0;
+    padding: 0px 0px 0px 0px;
+    list-style: none;
+    line-height: normal;
+    text-align: center;
+  }
+
+  nav li {
+    display: inline;
+  }
+
+  nav a {
+    height: 56px;
+    margin: 0px;
+    padding: 10px 30px 10px 30px;
+    line-height: 56px;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    color: #262626;
+    border: none;
+  }
+
+#Home #homenavlink a, #Story #storynavlink a, #RSVP #rsvpnavlink a, #Registry #registrynavlink a, #Photos #photonavlink a {
+  background-color: #FCB040;
+  color: #FFFFFF;
+}
+
+nav a:hover {
+  background-color: #DC1E31;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+
+/* Page */
+
+#page {
+  background: White;
+  height: 100%;
+  min-height: 1000px;
+  width: 900px;
+  margin: 0 auto;
+}
+
+#page-content {
+  width: 870px;
+  margin: 0px auto;
+}
+
+/* Content */
+
+.content {
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.post {
+  text-align: center;
+}
