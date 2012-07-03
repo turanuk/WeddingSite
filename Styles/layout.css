@@ -7,7 +7,7 @@ body {
   padding: 0;
   font-family: "Gentium Basic", sans-serif;
   font-size: 1.1em;
-  background: url(../Images/gold-texture.jpg);
+  background-color: #EEE7DF;
 }
 
 h1, h2, h3 {
@@ -151,7 +151,7 @@ nav a:hover {
 #page {
   background: White;
   width: 900px;
-  height: 1080px;
+  height: 1050px;
   margin: 0 auto;
 }
 
