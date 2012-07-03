@@ -7,9 +7,7 @@ body {
   padding: 0;
   font-family: "Gentium Basic", sans-serif;
   font-size: 1.1em;
-  background-color: rgba(0,0,0,0.13);
-  height: 100%;
-  min-height: 1000px;
+  background: url(../Images/gold-texture.jpg);
 }
 
 h1, h2, h3 {
@@ -47,6 +45,7 @@ ul, ol {
 
 a {
   text-decoration: none;
+  outline-style: none;
   color: #DC1E31;
 }
 
@@ -75,7 +74,7 @@ img.aligncenter {
 /* Header */
 
 #header-wrapper {
-  height: 250px;
+  height: 242px;
 }
 
 #header {
@@ -132,7 +131,7 @@ nav {
     font-family: 'Oswald', sans-serif;
     font-size: 14px;
     font-weight: normal;
-    color: #262626;
+    color: White;
     border: none;
   }
 
@@ -151,15 +150,13 @@ nav a:hover {
 
 #page {
   background: White;
-  height: 100%;
-  min-height: 1000px;
   width: 900px;
+  height: 1100px;
   margin: 0 auto;
 }
 
 #page-content {
-  width: 870px;
-  min-height: 1000px;
+  height: auto;
   margin: 0px auto;
 }
 
@@ -167,9 +164,9 @@ nav a:hover {
 
 .content {
   width: 800px;
-  min-height: 1000px;
   margin: 0 auto;
   margin-top: 30px;
+  height: auto;
 }
 
 .post {

@@ -11,6 +11,8 @@
   $(function () {
     //Implement cache with local storage. 
     //If it's been more than 10 minutes since you've hit this page, render fade
+    //Force fade
+    localStorage.firstTime = '';
     var currentMilliseconds = Date.parse(new Date());
     if (!localStorage.firstTime || currentMilliseconds - localStorage.firstTime > 600000) {
       var def = $.Deferred();
@@ -18,7 +20,7 @@
         def.resolve();
       });
       def.done(function () {
-        $('.homeContent').fadeIn(500);
+        $('.homeContent').fadeIn(600);
       })
     } else {
       $('#menu-wrapper').show();
@@ -29,6 +31,7 @@
   })
 </script>
 <div class="homeContent">
-  <h2>Welcome</h2>
-  <p>Hello world, here is where content goes!</p>
+  <h2>09.29.2012</h2>
+  <p>Welcome to our wedding site! Please use the links above to explore :)</p>
+  <img src="~/Images/logo.png" alt="logo"/>
 </div>

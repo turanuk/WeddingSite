@@ -1,3 +1,7 @@
+.tableWrapper {
+  margin-left: 40px;
+}
+
 table {
   margin-top: 15px;
   border-radius: 5px;
@@ -5,6 +9,7 @@ table {
   text-align: left;
   border: 1px solid #444444;
   border-collapse: collapse;
+  width: 700px;
 }
 
   table thead tr th {
