@@ -29,7 +29,7 @@
             $('#actionType').html('Hi ' + data.FirstName + '!');
             $('#actionDescription').html('Please use the form below to let us know how many will be in your party. If you can\'t make it, please select 0.');
           }
-          $('select option:nth-child(' + data.NumberInParty + 1 + ')').attr('selected', 'selected')
+          $('select option:nth-child(' + (data.NumberInParty + 1) + ')').attr('selected', 'selected');
           $('#invitationInfo').show();
           $('#hiddenInvitationId').val(invitationId);
           $('#firstName').val(data.FirstName);
