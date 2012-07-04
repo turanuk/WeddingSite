@@ -1,10 +1,11 @@
 #Photos > #page {
   background-image: url("../Images/birds_red.png");
   background-repeat: no-repeat;
-  background-position: 430px 810px;
+  background-position: 430px 830px;
 }
 #galleria { 
   display: none;
-  height: 480px;
-  margin-top: 50px;
+  width: 600px;
+  height: 420px;
+  margin-top: 10px;
 }

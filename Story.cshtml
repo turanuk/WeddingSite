@@ -2,7 +2,97 @@
   Page.Title = "Our Story";
   Page.PageId = "Story";
 }
+<script>
+  $(function() {
+    var reset = function () {
+      $('.story2007').hide();
+      $('.story2007header').removeClass('active');
+      $('.story2009').hide();
+      $('.story2009header').removeClass('active');
+      $('.story2012').hide();
+      $('.story2012header').removeClass('active');
+    }
+
+    var show2007 = function () {
+      reset();
+      localStorage.currentPage = 2007;
+      $('.story2007').fadeIn(2000);
+      $('.story2007header').addClass('active');
+    }
+
+    var show2009 = function () {
+      reset();
+      localStorage.currentPage = 2009;
+      $('.story2009').fadeIn(2000);
+      $('.story2009header').addClass('active');
+    }
+
+    var show2012 = function () {
+      reset();
+      localStorage.currentPage = 2012;
+      $('.story2012').fadeIn(2000);
+      $('.story2012header').addClass('active');
+    }
+
+    if (localStorage.currentPage) {
+      if (localStorage.currentPage == 2007) {
+        show2007();
+      }
+      if (localStorage.currentPage == 2009) {
+        show2009();
+      }
+      if (localStorage.currentPage == 2012) {
+        show2012();
+      }
+    } else {
+      show2007();
+    }
+
+    $('.show2007').click(function () {
+      show2007();
+    });
+
+    $('.show2009').click(function () {
+      show2009();
+    });
+
+    $('.show2012').click(function () {
+      show2012();
+    });
+  });
+</script>
 <div class="storyContent">
-  <h2>Ling Ling And Jim</h2>
-  <p>Here is some text for our story</p>
+  <div class="header">
+    <a href="#" class="show2007"><h3 class="story2007header">2007-2008</h3></a>
+    <a href="#" class="show2009"><h3 class="story2009header">2009-2010</h3></a>
+    <a href="#" class="show2012"><h3 class="story2012header">2012</h3></a>
+  </div>
+  <div class="story2007">
+    <p><b>LL:</b> One of my earliest memories of Jim was during our church snowboarding trip to Snoqualmie pass. It wasn’t the amazing snow or warm hot chocolate that made the day. Rather, it was his outfit: a waterproof motorcycle suit. How daring, utterly practical and comical. Suits his personality quite well!</p>
+    <img src="~/Photos/DSC00533.jpg" alt="snowboarding" class="inlineImage"/>
+    <p><b>Jim:</b> My earliest memory of Ling Ling was her role as the Thanksgiving pie girl. Every time that holiday rolled around, she would organize pie making at the church. People would try the zaniest ideas such as avocado pie or drunken chicken pie. She was so helpful and cheerful, except when there was a deadline to get the pies on the potluck table. :)</p>
+    <img src="~/Photos/DSC04704.jpg" alt="pies" class="inlineImage"/>
+    <div class="storynav"><h3><a href="#" class="show2009">Next</a></h3></div>
+  </div>
+  <div class="story2009">
+    <p>
+      Fast forward a few years: we amassed a ton of fun times playing ultimate Frisbee, going on bike rides, rowing boats, studying God’s word and eating delicious food. 
+    </p>
+    <img src="~/Photos/DSC05667.jpg" alt="bikes" class="inlineImage"/>
+    <p>
+      As we both started serving more in church and got to know each other better, we developed a mutual undeclared admiration of each other, culminating in LL asking Jim to be her date to her PT Christmas party. He said YES! It was such a lovely evening that they decided to continue their date until now! 
+    </p>
+    <img src="~/Photos/IMG_0900.jpg" alt="birthday" class="inlineImage"/>
+    <img src="~/Photos/DSCF6380.jpg" alt="cardphoto" class="inlineImage"/>
+    <div class="storynav"><h3><a href="#" class="show2012">Next</a></h3></div>
+  </div>
+  <div class="story2012">
+    <p>The fun continued in 2012...</p>
+    <img src="~/Photos/IMG_6000.jpg" alt="oreo" class="inlineImage"/>
+    <img src="~/Photos/IMG_2396.jpg" alt="jumping" class="inlineImage"/>
+    <img src="~/Photos/IMG_3094.jpg" alt="proposal" class="inlineImage"/>
+    <p><b>June 14, 2012:</b> Jim proposes. She said YES!  Come to the wedding to hear the whole story!</p>
+    <div class="storynav"><h3><a href="~/RSVP">RSVP Now</a></h3></div>
+  </div>
 </div>
+<div style="clear: both"></div>

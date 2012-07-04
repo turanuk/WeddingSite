@@ -1,5 +1,5 @@
 .rsvpContent {
-  text-align: center;
+  text-align: left;
 }
 
 .rsvpContent h2 {
@@ -7,9 +7,9 @@
 }
 
 #RSVP > #page {
-  background-image: url("../Images/hearts_yellow.png");
+  background-image: url("../Images/hearts_red.png");
   background-repeat: no-repeat;
-  background-position: -320px 50px;
+  background-position: 380px 50px;
 }
 
 fieldset {

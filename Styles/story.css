@@ -1,8 +1,40 @@
 .storyContent {
-  text-align: center;
+  text-align: right;
+  width: 520px;
+  float: right;
+  margin-bottom: 20px;
 }
+
 #Story > #page {
   background-image: url("../Images/hearts_yellow.png");
   background-repeat: no-repeat;
   background-position: -250px 70px;
+}
+
+.inlineImage{
+  width: 300px;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  height: 50px;
+}
+
+h3 {
+  float: right;
+  margin-left: 30px;
+  color: Grey;
+}
+
+h3.active {
+  color: #DC1E31;
+}
+
+.story2007, .story2009, .story2012 {
+  display:  none;
+}
+
+.storynav {
+  margin-top: 15px;
 }
