@@ -3,3 +3,8 @@
   background-repeat: no-repeat;
   background-position: 430px 810px;
 }
+#galleria { 
+  display: none;
+  height: 480px;
+  margin-top: 50px;
+}

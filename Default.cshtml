@@ -12,7 +12,7 @@
     //Implement cache with local storage. 
     //If it's been more than 10 minutes since you've hit this page, render fade
     //Force fade
-    localStorage.firstTime = '';
+    //localStorage.firstTime = '';
     var currentMilliseconds = Date.parse(new Date());
     if (!localStorage.firstTime || currentMilliseconds - localStorage.firstTime > 600000) {
       var def = $.Deferred();

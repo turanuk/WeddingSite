@@ -2,3 +2,34 @@
   Page.Title = "Photos";
   Page.PageId = "Photos";
 }
+@section Scripts {
+  <script src="~/Scripts/galleria-1.2.7.min.js"></script>
+  <script src="~/Scripts/galleria.classic.min.js"></script>
+}
+@section Styles {
+  <link href="~/Styles/galleria.classic.css" rel="stylesheet" type="text/css" media="screen" />
+}
+
+<script>
+  $(function() {
+    Galleria.loadTheme('Scripts/galleria.classic.min.js');
+    Galleria.configure({
+      lightbox: true
+    });
+    Galleria.run('#galleria');
+    $('#galleria').fadeIn(1000);
+  })
+</script>
+
+<div id="galleria">
+  <a href="~/Photos/IMG_3094.jpg">
+      <img data-title="Engagement"
+            data-description="Our engagement night at the Herb Farm - June 14th, 2012"
+            src="~/Photos/IMG_3094.jpg" alt="photo">
+  </a>
+  <a href="~/Photos/JL-126.jpg">
+      <img data-title="Engagement Shoot"
+            data-description="At the Blodel Reserve on BainBridge Island"
+            src="~/Photos/JL-126.jpg" alt="photo">
+  </a>
+</div>
