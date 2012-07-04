@@ -6,7 +6,9 @@
       <li id="photonavlink"><a href="~/Photos">Photos</a></li>
       <li id="rsvpnavlink"><a href="~/RSVP">RSVP</a></li>
       <li id="registrynavlink"><a href="~/Registry">Registry</a></li>
-      <li id="adminnavlink"><a href="~/Admin">Admin</a></li>
+      @if (WebSecurity.IsAuthenticated) {
+        <li id="adminnavlink"><a href="~/Admin">Admin</a></li>
+      }
     </ul>
   </nav>
 </div>

@@ -1,0 +1,10 @@
+﻿@{
+    WebSecurity.RequireAuthenticatedUser();
+
+    // Log out of the current user context
+    WebSecurity.Logout();
+
+    // Redirect back to the return URL or homepage
+    var returnUrl = Request.QueryString["ReturnUrl"];
+    Context.RedirectLocal(returnUrl);
+}

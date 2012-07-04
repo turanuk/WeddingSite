@@ -36,7 +36,7 @@ fieldset {
     padding-bottom: 3px;
   }
 
-  fieldset input[type="text"] {
+  fieldset input[type="text"], fieldset input[type="password"] {
     margin-left: 3px;
     font-family: Segoe UI;
     border: 1px solid #ccc;

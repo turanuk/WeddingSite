@@ -58,3 +58,7 @@ table {
 .RSVPRateLabel {
   font-weight: bold;
 }
+
+.dialog-delete-element {
+  font-size: 0.8em;
+}
