@@ -8,11 +8,11 @@
   var people = db.Query("SELECT * FROM Person WHERE (InvitationId = @0)", invitationId);
   var indexCounter = 0;
   if (IsPost) {
-      db.Execute("UPDATE RSVP SET FirstName=@0, LastName=@1 WHERE InvitationId =@2", Request["firstName"], Request["lastName"], invitationId);
-      foreach (var person in people) {
-        db.Execute("UPDATE Person SET FirstName=@0, LastName=@1 WHERE Id=@2", Request["firstName" + person.Id], Request["lastName" + person.Id], person.Id);
-      }
-      people = db.Query("SELECT * FROM Person WHERE InvitationId = @0", invitationId);
+    db.Execute("UPDATE RSVP SET FirstName=@0, LastName=@1 WHERE InvitationId =@2", Request["firstName"], Request["lastName"], invitationId);
+    foreach (var person in people) {
+      db.Execute("UPDATE Person SET FirstName=@0, LastName=@1 WHERE Id=@2", Request["firstName" + person.Id], Request["lastName" + person.Id], person.Id);
+    }
+    Response.Redirect("~/Admin/ManageGuests");
   }
 }
 
