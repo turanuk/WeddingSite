@@ -132,3 +132,12 @@ fieldset input[type="submit"], .ajaxButton {
 #singlePerson, #multiplePeople {
   display: none;
 }
+
+.lastPara {
+  margin-top: 15px;
+  padding-bottom: 20px;
+}
+
+#dialog-modal {
+  display: none;
+}

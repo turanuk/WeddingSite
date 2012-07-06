@@ -6,11 +6,29 @@
   var guest = db.QuerySingle("SELECT * FROM RSVP WHERE InvitationID = @0", invitationID);
 }
 <div class="post">
-  @if (guest.NumberInParty > 0) {
+  @if (guest.Coming) {
     <h2 class="title">Thanks for your RVSP!</h2>
     <img src="~/Images/birds_red.png" alt="thankspic" style="margin-bottom: 25px;" />
     <h2>See you on September 29th!</h2>
-    <p>Thanks @guest.FirstName - we have you down for @guest.NumberInParty guests, please let us know if anything changes.</p>
+    if (guest.NumberInParty > 1) {
+      <p>Thanks @guest.FirstName - we have you down for @guest.NumberInParty guests, please let us know if anything changes - we look forward to seeing you!</p>
+      <p>For your records, here are the names we have on file for placecards: </p>
+      <ol>
+        <li>@guest.FirstName @guest.LastName</li>
+        @foreach (var person in db.Query("SELECT * FROM Person WHERE InvitationID = @0", invitationID)) {
+          if (person.FirstName == "" && person.LastName == "") {
+            <li>ERROR - EMPTY NAME. <a href="~/RSVP">Please RSVP again.</a></li>
+          } else {
+            <li>@person.FirstName @person.LastName</li>
+          }
+        }
+      </ol>
+    } else {
+      <p>Thanks @guest.FirstName, please let us know if anything changes. We look forward to seeing you!</p>
+      <p>Your name as it will appear on your placecard is: </p>
+      <p>@guest.FirstName @guest.LastName</p>
+    }
+   <p class="lastPara">If this is not correct, please <a href="~/RSVP">click here</a> to RSVP again!</p>
   } else {
     <h2>Sorry :(</h2>
     <p>We're sorry you can't make it @guest.FirstName. Please RSVP again if your situation changes!</p>

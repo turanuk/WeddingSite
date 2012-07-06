@@ -22,3 +22,13 @@ ko.bindingHandlers.deletePrompt = {
     });
   }
 }
+
+ko.bindingHandlers.comingText = {
+  init: function (element, valueAccessor, allBindingsAccessor, model) {
+    if (valueAccessor()) {
+      $(element).html('Yes');
+    } else {
+      $(element).html('No');
+    }
+  }
+}

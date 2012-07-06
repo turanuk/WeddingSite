@@ -1,0 +1,90 @@
+@section Scripts {
+  <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
+}
+
+@{
+  var invitationId = UrlData[0];
+  var db = Database.Open("WeddingSite");
+  var personRecord = db.QuerySingle("SELECT * FROM RSVP WHERE (InvitationId = @0)", invitationId);
+  if (personRecord == null) {
+    Response.Redirect("~/");
+  } 
+  var people = db.Query("SELECT * FROM Person WHERE (InvitationId = @0)", invitationId);
+  var indexCounter = 0;
+  if (IsPost) {
+    db.Execute("UPDATE RSVP SET FirstName=@0, LastName=@1 WHERE InvitationId =@2", Request["firstName"], Request["lastName"], invitationId);
+    foreach (var person in people) {
+      db.Execute("UPDATE Person SET FirstName=@0, LastName=@1 WHERE Id=@2", Request["firstName" + person.Id], Request["lastName" + person.Id], person.Id);
+    }
+    Response.Redirect("~/RSVPSuccess/" + invitationId);
+  }
+}
+
+<script>
+  $(function() {
+    $('#submitClick').click(function() {
+      var empty = false;
+      $.each($('input[type="text"]'), function (index, value) {
+        if (!value.value) {
+          empty = true;
+        }
+      });
+      if (empty) {
+        $( "#dialog-modal" ).dialog({
+          modal: true,
+          width: 600,
+          resize: false,
+          buttons: {
+            OK: function() {
+              $( this ).dialog( "close" );
+            }
+          }
+        });
+      } else {
+        document.forms['submitForm'].submit();
+      }
+    });
+  });
+</script>
+<div class="post">
+  <h2>Hi @personRecord.FirstName!</h2>
+  <p>One last step - here is what we have on record for names. If there are blanks, please fill them in! This is how your names will appear on placecards at the wedding.</p>
+  <fieldset>
+    <legend>Add Names</legend>
+    <form id="submitForm" method="post">
+      <ol>
+        <li>You</li>
+        <li>
+          <label for="firstName">First Name</label>
+          <input id="firstName" type="text" value="@personRecord.FirstName" name="firstName" />
+        </li>
+        <li>
+          <label for="lastName">Last Name</label>
+          <input id="lastName" type="text" value="@personRecord.LastName" name="lastName" />
+        </li>
+        @*Additional Guests*@
+        @foreach (var person in people) {
+          <li>
+            Person #@(indexCounter+2)
+          </li>
+          <li>
+            <label for="firstName@(person.Id)">First Name</label>
+            <input id="firstName@(person.Id)" type="text" value="@person.FirstName" name="firstName@(person.Id)" />
+          </li>
+          <li>
+            <label for="lastName@(person.Id)">Last Name</label>
+            <input id="lastName@(person.Id)" type="text" value="@person.LastName" name="lastName@(person.Id)" />
+          </li>
+          indexCounter++;
+        }
+        <li class="formactions">
+          <input type="button" class="ajaxButton" id="submitClick" value="Finish"/>
+        </li>
+      </ol>
+    </form>
+  </fieldset>
+</div>
+
+<div id="dialog-modal" title="Error">
+  <p>One or more of the names on this form are blank. If you don't fill them out we won't know what to put on your name cards! Please add names and click "Finish" again.</p>
+</div>

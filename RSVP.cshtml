@@ -1,9 +1,128 @@
-@{
+﻿@{
   Page.Title = "RSVP";
   Page.PageId = "RSVP";
+  if (IsPost) {
+    var invitationID = Request["invitationID"].AsInt();
+    var numOfGuests = Request["numOfGuests"].AsInt();
+    var response = Request["hiddenResponse"];
+    var db = Database.Open("WeddingSite");
+
+    if (response == "No") {
+      db.Execute("UPDATE RSVP SET Responded = @0, Coming = @1 WHERE InvitationId = @2", true, false, invitationID);
+      Response.Redirect("~/RSVPSuccess/" + invitationID);
+    }
+
+    var people = db.Query("SELECT * FROM Person WHERE InvitationID = @0", invitationID);
+    var rsvpRecord = db.QuerySingle("SELECT * FROM RSVP WHERE InvitationID = @0", invitationID);
+    if (rsvpRecord.NumberInParty < numOfGuests) {
+      Response.Redirect("~/RSVPTooMany");
+    }
+    //Delete extra people from the back if necessary
+    for (var i = 0; i < rsvpRecord.NumberInParty - numOfGuests; i++) {
+      people = db.Query("SELECT * FROM Person WHERE InvitationID = @0", invitationID);
+      db.Execute("DELETE FROM Person WHERE Id=@0", people.Last().Id);
+    }
+    db.Execute("UPDATE RSVP SET Responded = @0, Coming =@1, NumberInParty = @2 WHERE InvitationId = @3", true, true, numOfGuests, invitationID);
+    Response.Redirect("~/RSVPAddNames/" + invitationID);
+  }
 }
+<script>
+  $(function() {
+    $('#invitationID').keydown(function (event) {
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        $('#lookup').click();
+      }
+    });
+    $('.notcoming').click(function() {
+      $('#hiddenResponse').val('No');
+      document.forms['submitForm'].submit();
+    })
+    $('.coming').click(function() {
+      $('#hiddenResponse').val('Yes');
+      document.forms['submitForm'].submit();
+    })
+    $('#lookup').click(function() {
+      $('#errorMessage').hide();
+      var invitationId = $('#invitationID').val();
+      $.getJSON('/endpoints/getguest/' + invitationId, function (data) {
+        if (data) {
+          if (data.NumberInParty > 1) {
+            $('#actionDescription').html('Please use the form below to let us know how many will be in your party.');
+            var i;
+            for (i = 2; i <= data.NumberInParty; i++) {
+              $('#numOfGuests').append('<option value="' + i + '">' + i + '&nbsp;</option>')
+            }
+            $('select option:nth-child(' + (data.NumberInParty) + ')').attr('selected', 'selected');
+            $('#multiplePeople').show();
+          } else {
+            $('#singlePerson').show();
+          }
+          if (data.Responded) {
+            $('#actionType').html('Update your RSVP');
+            $('#actionDescription').html('Thanks for responding ' + data.FirstName + '. Let us know what\'s changed!');
+          } else {
+            $('#actionType').html('Hi ' + data.FirstName + '!');
+          }
+          $('#invitationInfo').show();
+          $('#hiddenInvitationId').val(invitationId);
+        } else {
+          $('#invitationInfo').hide();
+          $('#errorMessage').show();
+        }
+      });
+    })
+  });
+</script>
 <div class="rsvpContent">
-  <h2>RSVP</h2>
-  <p>We know you're looking forward to RSVPing! Hang on to that code - hardworking pandas are currently getting the system up and running, please check back on July 15th!</p>
-  <img src="~/Images/cutepanda.jpg" alt="cutepanda"/>
+  <h2 class="title">RSVP</h2>
+  <p>Please enter your invitation ID, which is printed on your invitation.</p>
+  <fieldset>
+    <legend>InvitationID</legend>
+    <ol>
+      <li>
+        <label for="invitationID">Invitation ID</label>
+        <input id="invitationID" type="text"/>
+        @Html.ValidationMessage("invitationID")
+      </li>
+      <li>
+        <input type="button" id="lookup" class="ajaxButton" value="Look Up" />
+      </li>
+    </ol>
+  </fieldset>
+  <div id="errorMessage">
+    We could not locate your invitation! Please check the invitation ID and try again.
+  </div>
+  <div id="invitationInfo">
+    <h2 class="title" id="actionType"></h2>
+    <p id="actionDescription"></p>
+  </div>
+  <div id="multiplePeople">
+    <fieldset>
+      <form id="submitForm" method="post">
+        <ol>
+            <li>
+              <label for="numOfGuests">Total Number in Party</label>
+              <select name="numOfGuests" id="numOfGuests">
+                <option value="1">1&nbsp;</option>
+              </select>
+            </li>
+            <li class="formactions">
+              <input type="button" class="ajaxButton coming" value="RSVP"/>
+              <input type="button" class="ajaxButton longAjaxButton notcoming" value="Can't make it"/>
+            </li>
+            </li>
+        </ol>
+        <input type="hidden" name="invitationID" id="hiddenInvitationId"/>
+        <input type="hidden" name="response" id="hiddenResponse"/>
+      </form>
+    </fieldset>
+  </div>
+  <div id="singlePerson">
+    <p>Our records show that you are the only one in your party. Can you make it?</p>
+    <div class="formactions">
+      <input type="button" class="ajaxButton coming" value="Yes"/>
+      <input type="button" class="ajaxButton notcoming" value="No"/>
+    </li>
+  </div>
 </div>
