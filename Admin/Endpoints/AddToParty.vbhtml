@@ -12,6 +12,7 @@
         count = count + 1
       End If
       db.Execute("UPDATE RSVP SET NumberInParty = @0 WHERE InvitationId = @1", count, invitationCode)
+      db.Execute("INSERT INTO Person (InvitationId) VALUES (@0)", invitationCode)
     Catch ex As Exception
       Response.SetStatus(500)
     End Try

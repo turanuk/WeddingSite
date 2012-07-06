@@ -25,7 +25,11 @@ var ManageGuestsViewModel = function (guestInput) {
 
   self.totalGuests = ko.computed(function() {
     var total = 0;
-    $.each(self.guests(), function () { total += this.NumberInParty });
+    $.each(self.guests(), function () { 
+      if (this.Coming) {
+        total += this.NumberInParty;
+      }
+    });
     return total;
   });
 

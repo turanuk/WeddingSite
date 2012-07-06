@@ -72,6 +72,10 @@ fieldset input[type="submit"], .ajaxButton {
   width: 100px;
 }
 
+.longAjaxButton {
+  width: 170px;
+}
+
 .ajaxButton {
   margin-left: 7px;
   font-size: 1.1em;
@@ -123,4 +127,8 @@ fieldset input[type="submit"], .ajaxButton {
 
 .visible {
   display: block;
+}
+
+#singlePerson, #multiplePeople {
+  display: none;
 }

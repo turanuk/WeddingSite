@@ -1,0 +1,56 @@
+﻿@{
+  var invitationId = UrlData[0];
+  var db = Database.Open("WeddingSite");
+  var personRecord = db.QuerySingle("SELECT * FROM RSVP WHERE (InvitationId = @0)", invitationId);
+  if (personRecord == null) {
+    Response.Redirect("~/");
+  } 
+  var people = db.Query("SELECT * FROM Person WHERE (InvitationId = @0)", invitationId);
+  var indexCounter = 0;
+  if (IsPost) {
+      db.Execute("UPDATE RSVP SET FirstName=@0, LastName=@1 WHERE InvitationId =@2", Request["firstName"], Request["lastName"], invitationId);
+      foreach (var person in people) {
+        db.Execute("UPDATE Person SET FirstName=@0, LastName=@1 WHERE Id=@2", Request["firstName" + person.Id], Request["lastName" + person.Id], person.Id);
+      }
+      people = db.Query("SELECT * FROM Person WHERE InvitationId = @0", invitationId);
+  }
+}
+
+<div class="post">
+  <h2>Add Guest Names</h2>
+  <p>Here you can add suggested names for people in @personRecord.FirstName's party</p>
+  <fieldset>
+    <legend>Add Names</legend>
+    <form method="post">
+      <ol>
+        <li>Person #1</li>
+        <li>
+          <label for="firstName">First Name</label>
+          <input id="firstName" type="text" value="@personRecord.FirstName" name="firstName" />
+        </li>
+        <li>
+          <label for="lastName">Last Name</label>
+          <input id="lastName" type="text" value="@personRecord.LastName" name="lastName" />
+        </li>
+        @*Additional Guests*@
+        @foreach (var person in people) {
+          <li>
+            Person #@(indexCounter+2)
+          </li>
+          <li>
+            <label for="firstName@(person.Id)">First Name</label>
+            <input id="firstName@(person.Id)" type="text" value="@person.FirstName" name="firstName@(person.Id)" />
+          </li>
+          <li>
+            <label for="lastName@(person.Id)">Last Name</label>
+            <input id="lastName@(person.Id)" type="text" value="@person.LastName" name="lastName@(person.Id)" />
+          </li>
+          indexCounter++;
+        }
+        <li class="formactions">
+          <input type="submit" value="Save"/>
+        </li>
+      </ol>
+    </form>
+  </fieldset>
+</div>

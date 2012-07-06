@@ -7,6 +7,7 @@
   Else
     Try
       db.Execute("DELETE FROM RSVP WHERE InvitationId = @0", invitationCode)
+      db.Execute("DELETE FROM Person WHERE InvitationId=@0", invitationCode)
     Catch ex As Exception
       Response.SetStatus(500)
     End Try
