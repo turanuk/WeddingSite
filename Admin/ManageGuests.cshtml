@@ -33,7 +33,7 @@
             <th>First Name</th>
             <th>Number of Guests</th>
             <th>Responded</th>
-            <th>Coming?</th>
+            <th>Coming</th>
             <th>Invitation Id</th>
             <th>Add Names</th>
             <th>Delete?</th>
@@ -52,7 +52,10 @@
                   <a data-bind="visible: Responded, click: $root.markNotResponded" href="#">Yes</a>
                   <a data-bind="visible: !Responded, click: $root.markResponded" href="#">No</a>
               </td>
-              <td data-bind="comingText: Coming"></td>
+              <td>
+                  <a data-bind="visible: Coming, click: $root.markNotComing" href="#">Yes</a>
+                  <a data-bind="visible: !Coming, click: $root.markComing" href="#">No</a>
+              </td>
               <td data-bind="text: InvitationId"></td>
               <td><a data-bind="attr: { href: 'AddGuestNames/' + InvitationId}">Add Names</a></td>
               <td><button data-bind="deletePrompt: $root">Delete</button></td>

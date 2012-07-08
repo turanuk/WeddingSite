@@ -87,6 +87,18 @@ var ManageGuestsViewModel = function (guestInput) {
     });
   }
 
+  self.markComing = function (guest) {
+    $.post('/admin/endpoints/markcoming', { InvitationId: guest.InvitationId }, function (data) {
+      self.refresh();
+    });
+  }
+
+  self.markNotComing = function (guest) {
+    $.post('/admin/endpoints/marknotcoming', { InvitationId: guest.InvitationId }, function (data) {
+      self.refresh();
+    });
+  }
+
   self.clearFilter = function () {
     self.filter('');
   }
