@@ -4,7 +4,7 @@ var ManageGuestsViewModel = function (guestInput) {
   var self = this;
   self.guests = ko.observableArray(guestInput);
   self.filter = ko.observable('');
-  self.filteredGuests = ko.dependentObservable(function() {
+  self.filteredGuests = ko.dependentObservable(function () {
     var localFilter = self.filter().toLowerCase();
     if (!localFilter) {
       return self.guests();
@@ -23,9 +23,21 @@ var ManageGuestsViewModel = function (guestInput) {
     });
   }
 
-  self.totalGuests = ko.computed(function() {
+  self.sortByComing = function () {
+    this.guests.sort(function (a, b) {
+      return a.Coming == true ? -1 : 1;
+    });
+  }
+
+  self.sortByResponded = function () {
+    this.guests.sort(function (a, b) {
+      return a.Responded == true ? -1 : 1;
+    });
+  }
+
+  self.totalGuests = ko.computed(function () {
     var total = 0;
-    $.each(self.guests(), function () { 
+    $.each(self.guests(), function () {
       if (this.Coming) {
         total += this.NumberInParty;
       }
@@ -48,7 +60,7 @@ var ManageGuestsViewModel = function (guestInput) {
         totalYes += 1
       }
     });
-    return (totalYes/total*100).toFixed(1);
+    return (totalYes / total * 100).toFixed(1);
   });
 
   self.refresh = function () {

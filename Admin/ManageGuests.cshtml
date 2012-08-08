@@ -29,11 +29,11 @@
     <table class="ko-grid" data-bind="css: { visible: filteredGuests().length > 0 }">
       <thead>
           <tr>
-            <th>Last Name</th>
+            <th><a href="#" data-bind="click: $root.sortByLastName">Last Name</a></th>
             <th>First Name</th>
             <th>Number of Guests</th>
-            <th>Responded</th>
-            <th>Coming</th>
+            <th><a href="#" data-bind="click: $root.sortByResponded">Responded</a></th>
+            <th><a href="#" data-bind="click: $root.sortByComing">Coming</a></th>
             <th>Invitation Id</th>
             <th>Add Names</th>
             <th>Delete?</th>
